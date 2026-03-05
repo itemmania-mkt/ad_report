@@ -7,16 +7,16 @@
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
 body{font-family:Pretendard,Arial,sans-serif;background:#f5f7fb;padding:24px;color:#333;margin:0;}
-h2{color:#1e293b;font-weight:800;margin-bottom:20px;letter-spacing:-0.02em;font-size:1.5rem;}
-.card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid #e2e8f0}
+h2{color:#1e293b;font-weight:800;margin-bottom:20px;letter-spacing:-0.02em;font-size:1.5rem; text-align: center;}
+.card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid #e2e8f0; max-width: 1100px; margin: 0 auto;} /* 시각적 최적화 너비 제한 및 중앙 정렬 */
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-table{border-collapse:collapse;width:100%;min-width:1300px;font-size:12px;table-layout: fixed;}
-th,td{border:1px solid #d1d5db;padding:8px 6px;word-break: break-all; text-align: center;} 
+table{border-collapse:collapse;width:100%; min-width: 1050px; font-size:12px; table-layout: fixed;} 
+th,td{border:1px solid #d1d5db;padding:8px 4px;word-break: break-all; text-align: center;} 
 
 /* 헤더 고정 */
 th{background:#f1f5f9;font-weight:700;color:#475569;position: sticky;top: 0;z-index: 30;}
 
-/* 광고명 열 고정 (클래스 기반으로 모든 행 적용) */
+/* 광고명 열 고정 (두 번째 열) - 광고구분(1열)이 지나가면 왼쪽 끝(0)에 붙음 */
 .sticky-name {
     position: sticky;
     left: 0;
@@ -29,26 +29,26 @@ th.sticky-name {
     background: #f1f5f9;
 }
 tr.total-row .sticky-name {
-    background: #fff1f2; /* 합계행 배경색 맞춤 */
+    background: #fff1f2;
 }
 
-/* 광고구분 (첫 번째 열) 스타일 - 고정 없음 */
+/* 광고구분 스타일 - 고정 해제 */
 td.cat{font-weight:700;background:#fafafa; color: #64748b;} 
 
 td.desc{color:#64748b;font-size:11px}
 td.roas{font-weight:700;color:#e11d48}
 tr.total-row{background:#fff1f2;font-weight:800}
 
-.num-align { text-align: right; }
+.num-align { text-align: right; padding-right: 6px; }
 .group-border { border-top: 2px solid #94a3b8 !important; }
 .footer-text { margin-top: 30px; text-align: center; color: #94a3b8; font-size: 13px; font-weight: 500; }
 
 @media (max-width: 768px) {
     body{padding: 12px;}
     h2{font-size: 1.15rem; margin-bottom: 12px;}
-    .card{padding: 10px; border-radius: 8px;}
-    table{min-width: 1100px; font-size: 11px;}
-    th, td{padding: 6px 4px;}
+    .card{padding: 10px; border-radius: 8px; max-width: 100%;}
+    table{min-width: 1000px; font-size: 11px;} 
+    th, td{padding: 6px 2px;}
 }
 </style>
 </head>
@@ -58,16 +58,16 @@ tr.total-row{background:#fff1f2;font-weight:800}
 <div class="table-wrap">
 <table>
 <colgroup>
-    <col style="width: 65px;"> <!-- 광고구분 너비 추가 축소 -->
-    <col style="width: 135px;"> <!-- 광고명 (고정) -->
-    <col style="width: 105px;">
-    <col style="width: 85px;">
-    <col style="width: 65px;">
-    <col style="width: 65px;">
-    <col style="width: 135px;">
-    <col style="width: 125px;">
-    <col style="width: 80px;">
-    <col style="width: 170px;">
+    <col style="width: 55px;"> <!-- 광고구분 축소 -->
+    <col style="width: 120px;"> <!-- 광고명 (고정) -->
+    <col style="width: 90px;">  <!-- 광고비용 -->
+    <col style="width: 80px;">  <!-- 클릭수 -->
+    <col style="width: 55px;">  <!-- 가입자수 -->
+    <col style="width: 55px;">  <!-- 로그인수 -->
+    <col style="width: 125px;"> <!-- 구매금액 -->
+    <col style="width: 110px;"> <!-- 수익액 -->
+    <col style="width: 65px;">  <!-- ROAS -->
+    <col style="width: 145px;"> <!-- 설명 -->
 </colgroup>
 <thead>
 <tr><th>광고구분</th><th class="sticky-name">광고명</th><th>광고비용</th><th>클릭수</th><th>가입자수</th><th>로그인수</th><th>구매발생금액(가입+로그인)</th><th>수익발생액(가입+로그인)</th><th>ROAS</th><th>광고 간략 설명</th></tr>

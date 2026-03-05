@@ -6,22 +6,31 @@
 <title>마케팅기획실(마케팅팀) 2026년 02월 광고 운영 결과</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
-body{font-family:Pretendard,Arial,sans-serif;background:#f5f7fb;padding:24px;color:#333;}
-h2{color:#1e293b;font-weight:800;margin-bottom:20px;letter-spacing:-0.02em;}
+body{font-family:Pretendard,Arial,sans-serif;background:#f5f7fb;padding:24px;color:#333;margin:0;}
+h2{color:#1e293b;font-weight:800;margin-bottom:20px;letter-spacing:-0.02em;font-size:1.5rem;}
 .card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid #e2e8f0}
-.table-wrap{overflow-x:auto}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;} /* 모바일 스크롤 최적화 */
 table{border-collapse:collapse;width:100%;min-width:1400px;font-size:12px;table-layout: fixed;}
-th,td{border:1px solid #d1d5db;padding:10px 8px;word-break: break-all; text-align: center;} /* 기본 가운데 정렬 적용 */
-th{background:#f1f5f9;font-weight:700;color:#475569}
-td.cat{font-weight:700;background:#fafafa; border-right: 2px solid #cbd5e1;} /* 광고구분 컬럼 구분 강조 */
+th,td{border:1px solid #d1d5db;padding:10px 8px;word-break: break-all; text-align: center;} /* 기본 가운데 정렬 */
+th{background:#f1f5f9;font-weight:700;color:#475569;position: sticky;top: 0;z-index: 20;}
+td.cat{font-weight:700;background:#fafafa; border-right: 2px solid #cbd5e1; position: sticky; left: 0; z-index: 10;} /* 카테고리 열 고정(모바일 가독성) */
 td.desc{color:#64748b;font-size:11px}
 td.roas{font-weight:700;color:#e11d48}
 tr.total-row{background:#fff1f2;font-weight:800}
 tr.total-row td{border-bottom:2px solid #fb7185}
-/* 숫자 데이터는 가독성을 위해 우측 정렬 유지 (필요 시 td에 style="text-align:right" 추가) */
 .num-align { text-align: right; }
-.group-border { border-top: 2px solid #94a3b8 !important; } /* 그룹 구분용 두꺼운 테두리 */
+.group-border { border-top: 2px solid #94a3b8 !important; }
 .footer-text { margin-top: 30px; text-align: center; color: #94a3b8; font-size: 13px; font-weight: 500; }
+
+/* 모바일 전용 반응형 스타일 */
+@media (max-width: 768px) {
+    body{padding: 12px;}
+    h2{font-size: 1.15rem; margin-bottom: 12px;}
+    .card{padding: 12px; border-radius: 8px;}
+    table{min-width: 1100px; font-size: 11px;} /* 모바일에서 표의 폭을 약간 줄여 밀도 높임 */
+    th, td{padding: 8px 4px;}
+    .footer-text{font-size: 11px; margin-top: 20px;}
+}
 </style>
 </head>
 <body>
@@ -31,18 +40,18 @@ tr.total-row td{border-bottom:2px solid #fb7185}
 <table>
 <colgroup>
     <col style="width: 100px;">
-    <col style="width: 150px;">
-    <col style="width: 110px;">
+    <col style="width: 140px;">
     <col style="width: 100px;">
-    <col style="width: 80px;">
-    <col style="width: 80px;">
-    <col style="width: 150px;">
-    <col style="width: 130px;">
-    <col style="width: 100px;">
-    <col style="width: 200px;">
+    <col style="width: 90px;">
+    <col style="width: 70px;">
+    <col style="width: 70px;">
+    <col style="width: 140px;">
+    <col style="width: 120px;">
+    <col style="width: 90px;">
+    <col style="width: 180px;">
 </colgroup>
 <thead>
-<tr><th style="text-align:center;"> 광고구분</th><th style="text-align:center;">광고명</th><th style="text-align:center;">광고비용</th><th style="text-align:center;">클릭수</th><th style="text-align:center;">가입자수</th><th style="text-align:center;">로그인수</th><th style="text-align:center;">구매발생금액(가입+로그인)</th><th style="text-align:center;">수익발생액(가입+로그인)</th><th style="text-align:center;">ROAS</th><th style="text-align:center;">광고 간략 설명</th></tr>
+<tr><th>광고구분</th><th>광고명</th><th>광고비용</th><th>클릭수</th><th>가입자수</th><th>로그인수</th><th>구매발생금액(가입+로그인)</th><th>수익발생액(가입+로그인)</th><th>ROAS</th><th>광고 간략 설명</th></tr>
 </thead>
 <tbody>
 <tr class="total-row"><td class="cat">합계</td><td>-</td><td class="num-align">46,086,469.70</td><td class="num-align">2,583,144</td><td class="num-align">5,220</td><td class="num-align">61,316</td><td class="num-align">17,076,471,830</td><td class="num-align">1,024,588,309.20</td><td class="roas num-align">2,223%</td><td class="desc">-</td></tr>

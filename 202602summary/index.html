@@ -43,12 +43,28 @@ tr.total-row{background:#fff1f2;font-weight:800}
 .group-border { border-top: 2px solid #94a3b8 !important; }
 .footer-text { margin-top: 30px; text-align: center; color: #94a3b8; font-size: 13px; font-weight: 500; }
 
+/* 모바일 전용 반응형 스타일 */
 @media (max-width: 768px) {
     body{padding: 12px;}
     h2{font-size: 1.15rem; margin-bottom: 12px;}
     .card{padding: 10px; border-radius: 8px; max-width: 100%;}
     table{min-width: 1000px; font-size: 11px;} 
     th, td{padding: 6px 2px;}
+}
+
+/* 인쇄 최적화 스타일 */
+@media print {
+    @page { size: A4 landscape; margin: 10mm; } /* 가로 인쇄 권장 */
+    body { background: #fff; padding: 0; margin: 0; }
+    h2 { font-size: 18pt; margin-bottom: 10mm; }
+    .card { box-shadow: none; border: none; max-width: 100%; padding: 0; }
+    .table-wrap { overflow: visible; }
+    table { min-width: 100%; width: 100%; table-layout: auto; font-size: 9pt; }
+    th, td { padding: 4px 2px; border: 1px solid #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    th, .sticky-name, td.cat { position: static !important; background: #f1f5f9 !important; } /* 고정 해제 */
+    .sticky-name { border-right: 1px solid #000 !important; }
+    tr.total-row { background: #fff1f2 !important; }
+    .footer-text { font-size: 10pt; color: #000; margin-top: 5mm; }
 }
 </style>
 </head>
@@ -135,9 +151,6 @@ tr.total-row{background:#fff1f2;font-weight:800}
 </tbody>
 </table>
 </div>
-</div>
-<div class="footer-text">
-    아이템 거래의 모든 것, 안전하고 빠른 아이템매니아와 함께하세요.
 </div>
 </body>
 </html>

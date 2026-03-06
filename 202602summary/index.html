@@ -26,18 +26,33 @@ th{background:#eef3fb;font-weight:700}
 td.cat{font-weight:700;background:#fafafa}
 td.roas{font-weight:700;color:#e11d48}
 tr.total-row{background:#fff1f2;font-weight:800}
+/* 합계 행 하단 테두리 선 굵기 2px 유지 */
+tr.total-row td{border-bottom:2px solid #94a3b8 !important}
 .num-align{text-align:right;padding-right:8px}
 
 /* 광고구분별 테두리 및 고정열 */
 .group-border td{border-top:2px solid #94a3b8 !important}
-.sticky-name{position:sticky;left:0;z-index:10;background:#fff;border-right:2px solid #d9d9d9 !important; cursor: help;} 
-th.sticky-name{z-index:20;background:#eef3fb; cursor: default;}
-tr.total-row .sticky-name{background:#fff1f2}
+.sticky-name{position:sticky;left:0;z-index:10;background:#fff;border-right:2px solid #d9d9d9 !important; cursor: help;}
+.mobile-tooltip{position:fixed;z-index:9999;max-width:240px;padding:10px 12px;background:#1e293b;color:#fff;font-size:12px;line-height:1.5;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,0.18);word-break:keep-all;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .18s ease, transform .18s ease}
+.mobile-tooltip.show{opacity:1;transform:translateY(0)}
+th.sticky-name{z-index:20;background:#eef3fb}
+/* 합계 행 내 고정열('-' 셀) 하단 테두리 명시 */
+tr.total-row .sticky-name{background:#fff1f2; border-bottom:2px solid #94a3b8 !important}
 
 @media (max-width:768px){
+    .sticky-name[title]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .sticky-name[title]:active{background:#f8fafc}
     body{padding:12px}
     .card, .comment-card{padding:15px;max-width:100%}
     table{min-width:900px}
+    
+    /* 모바일 환경 테두리 굵기 정밀 일치화 */
+    /* 고정열 오른쪽 테두리를 PC와 동일하게 유지하거나 시인성 확보를 위해 2px 설정 */
+    .sticky-name, th.sticky-name { border-right-width: 2px !important; border-right-color: #d9d9d9 !important; }
+    
+    /* 광고 구분선 및 합계 행 하단선을 모바일에서도 2px로 강제 유지 */
+    .group-border td { border-top-width: 2px !important; border-top-color: #94a3b8 !important; }
+    tr.total-row td, tr.total-row .sticky-name { border-bottom-width: 2px !important; border-bottom-color: #94a3b8 !important; }
 }
 @media print {
     @page { size: A4 landscape; margin: 10mm; }
@@ -52,11 +67,11 @@ tr.total-row .sticky-name{background:#fff1f2}
 <div class="comment-card">
     <div class="comment-title">💡 운영 결과 분석 및 전략 코멘트</div>
     <ul class="comment-list">
-        <li><b>CPA(가입광고) 관리 가이드:</b> 가입 유도를 1차 목표로 하되, 가입 후 3개월 내 거래전환 발생율을 높여 실제 수익 유저를 확보하는 것을 최종 KPI로 관리함.</li>
-        <li><b>ROAS 산출 기준 정의:</b> 광고 인입 트래킹이 명확하게 확인된 구매자의 거래금액만을 데이터로 산출하여 성과 측정의 엄밀함을 기함.</li>
-        <li><b>유튜브 광고 성과:</b> CPV 7.3원의 우수한 효율을 기록 중이며, 영상 노출 및 도달 측면의 KPI로 보았을 때 브랜드 인지도 확산에 매우 높은 기여를 하고 있음.</li>
-        <li><b>검색 광고 운영 조정:</b> <b>구글Ads 키워드 광고는 SEO(검색 최적화) 노출 관련에 따라 3월 5일부로 광고 운영을 중단한 상태이며, 추후 재검토 후 최종 결정 예정.</b></li>
-        <li><b>매체 최적화 분석:</b> 실거래 전환율이 압도적인 애드웨어(플레어레인) 등 고수익 매체 인벤토리를 집중 관리하여 전체 수익성을 지속 개선할 예정임.</li>
+        <li><b>CPA(가입광고) 관리 가이드:</b> 가입 유도를 1차 목표로 하되, 가입 후 3개월 내 거래전환 발생율을 높여 실제 수익 유저를 확보하는 것을 최종 KPI로 관리</li>
+        <li><b>ROAS 산출 기준 정의:</b> 광고 인입 트래킹이 명확하게 확인된 구매자의 거래금액만을 데이터로 산출하여 성과 측정의 엄밀함을 기함</li>
+        <li><b>유튜브 광고 성과:</b> CPV 7.3원의 우수한 효율을 기록 중이며, 영상 노출 및 도달 측면의 KPI로 보았을 때 브랜드 인지도 확산에 매우 높은 기여를 하고 있음</li>
+        <li><b>검색 광고 운영 조정:</b> <b>구글Ads 키워드 광고는 3월 5일부로 광고 운영을 중단한 상태</b></li>
+        <li><b>매체 최적화 분석:</b> 실거래 전환율이 압도적인 애드웨어(플레어레인) 등 고수익 매체 인벤토리를 집중 관리하여 전체 수익성을 지속 개선할 예정</li>
     </ul>
     
     <div class="termination-box">
@@ -103,7 +118,7 @@ tr.total-row .sticky-name{background:#fff1f2}
 <tr class="group-border">
     <td class="cat" rowspan="4">매칭 광고</td>
     <td class="sticky-name" title="키워드 매칭 및 제휴형 광고">아이엠키워드</td>
-    <td class="num-align">1,057,140</td><td class="num-align">17,619</td><td class="num-align">13</td><td class="num-align">5,662</td><td class="num-align">1,386,595,560</td><td class="num-align">83,195,733</td><td class="roas num-align">7870%</td>
+    <td class="num-align">1,057,140</td><td class="num-align">17,619</td><td class="num-align">13</td><td class="num-align">5,662</td><td class="num-align">1,386,595,560</td><td class="num-align">83,195,734</td><td class="roas num-align">7870%</td>
 </tr>
 <tr>
     <td class="sticky-name" title="키워드 매칭 및 제휴형 광고">PC탭</td>
@@ -219,7 +234,7 @@ tr.total-row .sticky-name{background:#fff1f2}
 </tr>
 <tr>
     <td class="sticky-name" title="외부 트래픽 유입 광고">컬쳐플러스</td>
-    <td class="num-align">1,000,000</td><td class="num-align">205</td><td class="num-align">-</td><td class="num-align">5</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
+    <td class="num-align">1,000,000</td><td class="num-align">205</td><td class="num-align">-</td><td class="num-align">-</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
 </tr>
 
 <!-- 리텐션 -->
@@ -273,5 +288,75 @@ tr.total-row .sticky-name{background:#fff1f2}
 </div>
 </div>
 
+<script>
+(function(){
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+    let tooltipEl = null;
+    let hideTimer = null;
+
+    function getTooltip(){
+        if (!tooltipEl) {
+            tooltipEl = document.createElement('div');
+            tooltipEl.className = 'mobile-tooltip';
+            document.body.appendChild(tooltipEl);
+        }
+        return tooltipEl;
+    }
+
+    function hideTooltip(){
+        const el = getTooltip();
+        el.classList.remove('show');
+    }
+
+    function showTooltip(target, text){
+        const el = getTooltip();
+        el.textContent = text;
+        el.classList.add('show');
+
+        const rect = target.getBoundingClientRect();
+        const margin = 10;
+        const tooltipWidth = Math.min(240, window.innerWidth - margin * 2);
+        el.style.maxWidth = tooltipWidth + 'px';
+        el.style.left = margin + 'px';
+        el.style.top = '0px';
+
+        requestAnimationFrame(() => {
+            const box = el.getBoundingClientRect();
+            let left = rect.left + (rect.width / 2) - (box.width / 2);
+            left = Math.max(margin, Math.min(left, window.innerWidth - box.width - margin));
+
+            let top = rect.bottom + 8;
+            if (top + box.height > window.innerHeight - margin) {
+                top = rect.top - box.height - 8;
+            }
+            top = Math.max(margin, top);
+
+            el.style.left = left + 'px';
+            el.style.top = top + 'px';
+        });
+
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(hideTooltip, 2200);
+    }
+
+    document.addEventListener('click', function(e){
+        const cell = e.target.closest('.sticky-name[title]');
+
+        if (!isMobile()) return;
+
+        if (cell) {
+            e.preventDefault();
+            e.stopPropagation();
+            showTooltip(cell, cell.getAttribute('title'));
+            return;
+        }
+
+        hideTooltip();
+    });
+
+    window.addEventListener('resize', hideTooltip);
+    window.addEventListener('scroll', hideTooltip, true);
+})();
+</script>
 </body>
 </html>

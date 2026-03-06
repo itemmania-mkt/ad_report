@@ -19,8 +19,8 @@ h2{color:#1e293b;font-weight:800;margin-bottom:20px;letter-spacing:-0.02em;text-
 
 /* 데이터 테이블 카드 */
 .card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);max-width:1150px;margin:0 auto;border:1px solid #d9d9d9}
-.table-wrap{overflow-x:auto; position: relative;}
-table{border-collapse:collapse;width:100%;min-width:950px;font-size:12px;table-layout:fixed}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:1000px;font-size:12px;table-layout:fixed}
 th,td{border:1px solid #d9d9d9;padding:8px 4px;text-align:center;word-break:break-all}
 th{background:#eef3fb;font-weight:700}
 td.cat{font-weight:700;background:#fafafa}
@@ -28,91 +28,27 @@ td.roas{font-weight:700;color:#e11d48}
 tr.total-row{background:#fff1f2;font-weight:800}
 .num-align{text-align:right;padding-right:8px}
 
-/* 그룹 구분 및 고정열 */
+/* 광고구분별 테두리 및 고정열 */
 .group-border td{border-top:2px solid #94a3b8 !important}
-
-/* 광고명 열: 모바일 터치 대응을 위한 상대 경로 설정 */
-.sticky-name {
-    position: sticky;
-    left: 0;
-    z-index: 10;
-    background:#fff;
-    border-right:2px solid #d9d9d9 !important; 
-    cursor: help;
-    outline: none;
-}
+.sticky-name{position:sticky;left:0;z-index:10;background:#fff;border-right:2px solid #d9d9d9 !important; cursor: help;} 
 th.sticky-name{z-index:20;background:#eef3fb; cursor: default;}
 tr.total-row .sticky-name{background:#fff1f2}
-
-/* --- 커스텀 툴팁 (모바일 대응) --- */
-.tooltip-cell {
-    position: relative;
-}
-/* 실제 툴팁 박스 */
-.tooltip-content {
-    visibility: hidden;
-    width: 200px;
-    background-color: #334155;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px;
-    position: absolute;
-    z-index: 100;
-    bottom: 125%; /* 위쪽에 표시 */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.2s;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 1.4;
-    pointer-events: none; /* 클릭 방해 금지 */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-/* 툴팁 화살표 */
-.tooltip-content::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #334155 transparent transparent transparent;
-}
-/* 호버 및 포커스(터치) 시 노출 */
-.sticky-name:hover .tooltip-content,
-.sticky-name:focus .tooltip-content {
-    visibility: visible;
-    opacity: 1;
-}
 
 @media (max-width:768px){
     body{padding:12px}
     .card, .comment-card{padding:15px;max-width:100%}
     table{min-width:900px}
-    /* 모바일에서는 툴팁이 잘리지 않도록 위치 조정 가능 */
-    .tooltip-content {
-        bottom: auto;
-        top: 125%;
-    }
-    .tooltip-content::after {
-        top: auto;
-        bottom: 100%;
-        border-color: transparent transparent #334155 transparent;
-    }
 }
 @media print {
     @page { size: A4 landscape; margin: 10mm; }
     .sticky-name { position: static !important; }
-    .tooltip-content { display: none; }
 }
 </style>
 </head>
 <body>
 <h2>◆ 마케팅기획실(마케팅팀) 2026년 02월 광고 운영 결과</h2>
 
+<!-- 운영 결과 요약 코멘트 -->
 <div class="comment-card">
     <div class="comment-title">💡 운영 결과 분석 및 전략 코멘트</div>
     <ul class="comment-list">
@@ -136,15 +72,15 @@ tr.total-row .sticky-name{background:#fff1f2}
 <div class="table-wrap">
 <table>
 <colgroup>
-    <col style="width: 80px;">
-    <col style="width: 150px;">
-    <col style="width: 105px;">
-    <col style="width: 90px;">
-    <col style="width: 60px;">
-    <col style="width: 60px;">
-    <col style="width: 130px;">
-    <col style="width: 120px;">
-    <col style="width: 75px;">
+    <col style="width: 80px;"> <!-- 광고구분 -->
+    <col style="width: 150px;"> <!-- 광고명 -->
+    <col style="width: 100px;"> <!-- 광고비용 -->
+    <col style="width: 90px;">  <!-- 클릭수 -->
+    <col style="width: 60px;">  <!-- 가입자수 -->
+    <col style="width: 60px;">  <!-- 로그인수 -->
+    <col style="width: 120px;"> <!-- 구매발생금액 -->
+    <col style="width: 115px;"> <!-- 수익발생액 -->
+    <col style="width: 75px;">  <!-- ROAS -->
 </colgroup>
 <thead>
 <tr><th>광고구분</th><th class="sticky-name">광고명</th><th>광고비용</th><th>클릭수</th><th>가입자수</th><th>로그인수</th><th>구매발생금액</th><th>수익발생액</th><th>ROAS</th></tr>
@@ -155,294 +91,180 @@ tr.total-row .sticky-name{background:#fff1f2}
 <!-- 검색 광고 -->
 <tr class="group-border">
     <td class="cat" rowspan="2">검색 광고</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        구글Ads 키워드
-        <span class="tooltip-content">포털 키워드 기반 검색 광고</span>
-    </td>
+    <td class="sticky-name" title="포털 키워드 기반 검색 광고">구글Ads 키워드</td>
     <td class="num-align">8,800,591</td><td class="num-align">57,611</td><td class="num-align">823</td><td class="num-align">14,139</td><td class="num-align">4,246,442,580</td><td class="num-align">254,786,555</td><td class="roas num-align">2895%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        다음
-        <span class="tooltip-content">포털 키워드 기반 검색 광고</span>
-    </td>
+    <td class="sticky-name" title="포털 키워드 기반 검색 광고">다음</td>
     <td class="num-align">7,000</td><td class="num-align">100</td><td class="num-align">-</td><td class="num-align">3</td><td class="num-align">192,800</td><td class="num-align">11,568</td><td class="roas num-align">165%</td>
 </tr>
 
 <!-- 매칭 광고 -->
 <tr class="group-border">
     <td class="cat" rowspan="4">매칭 광고</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        아이엠키워드
-        <span class="tooltip-content">키워드 매칭 및 제휴형 광고</span>
-    </td>
+    <td class="sticky-name" title="키워드 매칭 및 제휴형 광고">아이엠키워드</td>
     <td class="num-align">1,057,140</td><td class="num-align">17,619</td><td class="num-align">13</td><td class="num-align">5,662</td><td class="num-align">1,386,595,560</td><td class="num-align">83,195,733</td><td class="roas num-align">7870%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        PC탭
-        <span class="tooltip-content">키워드 매칭 및 제휴형 광고</span>
-    </td>
+    <td class="sticky-name" title="키워드 매칭 및 제휴형 광고">PC탭</td>
     <td class="num-align">2,017,340</td><td class="num-align">100,867</td><td class="num-align">1</td><td class="num-align">1,258</td><td class="num-align">112,286,590</td><td class="num-align">6,737,195</td><td class="roas num-align">334%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        탭업
-        <span class="tooltip-content">키워드 매칭 및 제휴형 광고</span>
-    </td>
+    <td class="sticky-name" title="키워드 매칭 및 제휴형 광고">탭업</td>
     <td class="num-align">332,480</td><td class="num-align">63,199</td><td class="num-align">-</td><td class="num-align">61</td><td class="num-align">17,737,300</td><td class="num-align">1,064,238</td><td class="roas num-align">320%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        릴레이티드팝
-        <span class="tooltip-content">키워드 매칭 및 제휴형 광고</span>
-    </td>
+    <td class="sticky-name" title="키워드 매칭 및 제휴형 광고">릴레이티드팝</td>
     <td class="num-align">739,000</td><td class="num-align">7,390</td><td class="num-align">-</td><td class="num-align">4</td><td class="num-align">2,330,220</td><td class="num-align">139,813</td><td class="roas num-align">19%</td>
 </tr>
 
 <!-- 신규가입 광고 -->
 <tr class="group-border">
     <td class="cat" rowspan="8">신규가입 광고</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        애드팝콘
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">애드팝콘</td>
     <td class="num-align">2,586,000</td><td class="num-align">11,542</td><td class="num-align">1,833</td><td class="num-align">993</td><td class="num-align">3,532,840</td><td class="num-align">211,970</td><td class="roas num-align">8%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        컬쳐랜드CPA
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">컬쳐랜드CPA</td>
     <td class="num-align">199,000</td><td class="num-align">5,385</td><td class="num-align">179</td><td class="num-align">346</td><td class="num-align">1,484,460</td><td class="num-align">89,068</td><td class="roas num-align">45%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        핀크럭스
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">핀크럭스</td>
     <td class="num-align">930,000</td><td class="num-align">5,555</td><td class="num-align">977</td><td class="num-align">457</td><td class="num-align">1,363,800</td><td class="num-align">81,828</td><td class="roas num-align">9%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        OHC
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">OHC</td>
     <td class="num-align">456,000</td><td class="num-align">2,881</td><td class="num-align">443</td><td class="num-align">340</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        피망모바일
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">피망모바일</td>
     <td class="num-align">521,000</td><td class="num-align">4,222</td><td class="num-align">534</td><td class="num-align">263</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        RROUND
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">RROUND</td>
     <td class="num-align">-</td><td class="num-align">131</td><td class="num-align">15</td><td class="num-align">30</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        애니툰CPA
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">애니툰CPA</td>
     <td class="num-align">159,000</td><td class="num-align">524</td><td class="num-align">107</td><td class="num-align">88</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        무툰
-        <span class="tooltip-content">CPA 기반 성과형 제휴 광고</span>
-    </td>
+    <td class="sticky-name" title="CPA 기반 성과형 제휴 광고">무툰</td>
     <td class="num-align">49,500</td><td class="num-align">276</td><td class="num-align">33</td><td class="num-align">4</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
 </tr>
 
 <!-- 애드웨어 광고 -->
 <tr class="group-border">
     <td class="cat" rowspan="3">애드웨어 광고</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        플레어레인
-        <span class="tooltip-content">외부 솔루션 활용 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 솔루션 활용 유입 광고">플레어레인</td>
     <td class="num-align">1,250,000</td><td class="num-align">28,536</td><td class="num-align">13</td><td class="num-align">10,350</td><td class="num-align">5,559,986,810</td><td class="num-align">333,599,209</td><td class="roas num-align">26688%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        라이브 아이콘
-        <span class="tooltip-content">외부 솔루션 활용 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 솔루션 활용 유입 광고">라이브 아이콘</td>
     <td class="num-align">-</td><td class="num-align">191</td><td class="num-align">-</td><td class="num-align">349</td><td class="num-align">8,423,990</td><td class="num-align">505,439</td><td class="roas num-align">-</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        아이콘 매니아
-        <span class="tooltip-content">외부 솔루션 활용 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 솔루션 활용 유입 광고">아이콘 매니아</td>
     <td class="num-align">-</td><td class="num-align">53</td><td class="num-align">-</td><td class="num-align">30</td><td class="num-align">1,478,000</td><td class="num-align">88,680</td><td class="roas num-align">-</td>
 </tr>
 
 <!-- PC방 광고 -->
 <tr class="group-border">
     <td class="cat" rowspan="7">PC방 광고</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        피카PC방
-        <span class="tooltip-content">PC방 런처, 배너, 엔딩브라우저 광고</span>
-    </td>
+    <td class="sticky-name" title="PC방 런처, 배너, 엔딩브라우저 광고">피카PC방</td>
     <td class="num-align">4,000,000</td><td class="num-align">860,734</td><td class="num-align">14</td><td class="num-align">1,944</td><td class="num-align">1,503,761,930</td><td class="num-align">90,225,716</td><td class="roas num-align">2256%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        게임팟
-        <span class="tooltip-content">PC방 런처, 배너, 엔딩브라우저 광고</span>
-    </td>
+    <td class="sticky-name" title="PC방 런처, 배너, 엔딩브라우저 광고">게임팟</td>
     <td class="num-align">5,000,000</td><td class="num-align">53,069</td><td class="num-align">23</td><td class="num-align">1,998</td><td class="num-align">635,082,060</td><td class="num-align">38,104,924</td><td class="roas num-align">762%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        포레런처
-        <span class="tooltip-content">PC방 런처, 배너, 엔딩브라우저 광고</span>
-    </td>
+    <td class="sticky-name" title="PC방 런처, 배너, 엔딩브라우저 광고">포레런처</td>
     <td class="num-align">3,000,000</td><td class="num-align">311,196</td><td class="num-align">18</td><td class="num-align">1,549</td><td class="num-align">563,530,850</td><td class="num-align">33,811,851</td><td class="roas num-align">1127%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        플레이게토 + 게토PC방
-        <span class="tooltip-content">PC방 런처, 배너, 엔딩브라우저 광고</span>
-    </td>
+    <td class="sticky-name" title="PC방 런처, 배너, 엔딩브라우저 광고">플레이게토 + 게토PC방</td>
     <td class="num-align">-</td><td class="num-align">4,578</td><td class="num-align">130</td><td class="num-align">1,810</td><td class="num-align">414,800,750</td><td class="num-align">24,888,045</td><td class="roas num-align">-</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        플레이도넛 런처
-        <span class="tooltip-content">PC방 런처, 배너, 엔딩브라우저 광고</span>
-    </td>
+    <td class="sticky-name" title="PC방 런처, 배너, 엔딩브라우저 광고">플레이도넛 런처</td>
     <td class="num-align">3,000,000</td><td class="num-align">287,986</td><td class="num-align">9</td><td class="num-align">590</td><td class="num-align">261,596,910</td><td class="num-align">15,695,815</td><td class="roas num-align">523%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        피카플레이 쿠폰
-        <span class="tooltip-content">PC방 런처, 배너, 엔딩브라우저 광고</span>
-    </td>
+    <td class="sticky-name" title="PC방 런처, 배너, 엔딩브라우저 광고">피카플레이 쿠폰</td>
     <td class="num-align">-</td><td class="num-align">1,252</td><td class="num-align">19</td><td class="num-align">606</td><td class="num-align">16,502,290</td><td class="num-align">990,137</td><td class="roas num-align">-</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        피카플레이 CPA
-        <span class="tooltip-content">PC방 런처, 배너, 엔딩브라우저 광고</span>
-    </td>
+    <td class="sticky-name" title="PC방 런처, 배너, 엔딩브라우저 광고">피카플레이 CPA</td>
     <td class="num-align">86,300</td><td class="num-align">28,536</td><td class="num-align">13</td><td class="num-align">10,350</td><td class="num-align">14,369,500</td><td class="num-align">862,170</td><td class="roas num-align">999%</td>
 </tr>
 
 <!-- 외부 광고 -->
 <tr class="group-border">
     <td class="cat" rowspan="5">외부 광고</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        고클린
-        <span class="tooltip-content">외부 트래픽 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 트래픽 유입 광고">고클린</td>
     <td class="num-align">3,223,030</td><td class="num-align">644,606</td><td class="num-align">4</td><td class="num-align">4,193</td><td class="num-align">953,201,000</td><td class="num-align">57,192,060</td><td class="roas num-align">1774%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        모비온
-        <span class="tooltip-content">외부 트래픽 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 트래픽 유입 광고">모비온</td>
     <td class="num-align">1,821,627</td><td class="num-align">36,417</td><td class="num-align">2</td><td class="num-align">1,596</td><td class="num-align">659,150,670</td><td class="num-align">39,549,040</td><td class="roas num-align">2171%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        컬쳐랜드
-        <span class="tooltip-content">외부 트래픽 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 트래픽 유입 광고">컬쳐랜드</td>
     <td class="num-align">2,500,000</td><td class="num-align">5,397</td><td class="num-align">5</td><td class="num-align">218</td><td class="num-align">37,233,830</td><td class="num-align">2,234,030</td><td class="roas num-align">89%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        트레디아
-        <span class="tooltip-content">외부 트래픽 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 트래픽 유입 광고">트레디아</td>
     <td class="num-align">700,000</td><td class="num-align">478</td><td class="num-align">-</td><td class="num-align">43</td><td class="num-align">5,378,920</td><td class="num-align">322,735</td><td class="roas num-align">46%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        컬쳐플러스
-        <span class="tooltip-content">외부 트래픽 유입 광고</span>
-    </td>
+    <td class="sticky-name" title="외부 트래픽 유입 광고">컬쳐플러스</td>
     <td class="num-align">1,000,000</td><td class="num-align">205</td><td class="num-align">-</td><td class="num-align">5</td><td class="num-align">-</td><td class="num-align">-</td><td class="roas num-align">-</td>
 </tr>
 
 <!-- 리텐션 -->
 <tr class="group-border">
     <td class="cat" rowspan="4">리텐션</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        쿠폰만료 리텐션
-        <span class="tooltip-content">기존 회원 재구매 유도 캠페인</span>
-    </td>
+    <td class="sticky-name" title="기존 회원 재구매 유도 캠페인">쿠폰만료 리텐션</td>
     <td class="num-align">1,031,965</td><td class="num-align">3,955</td><td class="num-align">-</td><td class="num-align">161</td><td class="num-align">67,039,110</td><td class="num-align">4,022,347</td><td class="roas num-align">390%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        휴면로그인 리텐션
-        <span class="tooltip-content">기존 회원 재구매 유도 캠페인</span>
-    </td>
+    <td class="sticky-name" title="기존 회원 재구매 유도 캠페인">휴면로그인 리텐션</td>
     <td class="num-align">904,392</td><td class="num-align">949</td><td class="num-align">-</td><td class="num-align">167</td><td class="num-align">13,259,490</td><td class="num-align">795,569</td><td class="roas num-align">88%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        마일리지만료 리텐션
-        <span class="tooltip-content">기존 회원 재구매 유도 캠페인</span>
-    </td>
+    <td class="sticky-name" title="기존 회원 재구매 유도 캠페인">마일리지만료 리텐션</td>
     <td class="num-align">315,193</td><td class="num-align">2,335</td><td class="num-align">-</td><td class="num-align">110</td><td class="num-align">11,610,780</td><td class="num-align">696,647</td><td class="roas num-align">221%</td>
 </tr>
 <tr>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        신규가입자 리텐션
-        <span class="tooltip-content">기존 회원 재구매 유도 캠페인</span>
-    </td>
+    <td class="sticky-name" title="기존 회원 재구매 유도 캠페인">신규가입자 리텐션</td>
     <td class="num-align">99,912</td><td class="num-align">737</td><td class="num-align">-</td><td class="num-align">35</td><td class="num-align">62,500</td><td class="num-align">3,750</td><td class="roas num-align">4%</td>
 </tr>
 
 <!-- 기타 광고군 -->
 <tr class="group-border">
     <td class="cat">타겟팅</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        디지털캠프
-        <span class="tooltip-content">리타겟팅 및 행동기반 광고</span>
-    </td>
+    <td class="sticky-name" title="리타겟팅 및 행동기반 광고">디지털캠프</td>
     <td class="num-align">300,000</td><td class="num-align">30,000</td><td class="num-align">-</td><td class="num-align">42</td><td class="num-align">4,702,220</td><td class="num-align">282,133</td><td class="roas num-align">94%</td>
 </tr>
 <tr class="group-border">
     <td class="cat">DM</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        DM
-        <span class="tooltip-content">E-mail 마케팅</span>
-    </td>
+    <td class="sticky-name" title="E-mail 마케팅">DM</td>
     <td class="num-align">-</td><td class="num-align">1,763</td><td class="num-align">-</td><td class="num-align">854</td><td class="num-align">69,553,850</td><td class="num-align">4,173,231</td><td class="roas num-align">-</td>
 </tr>
 <tr class="group-border">
     <td class="cat">바이럴</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        바이럴
-        <span class="tooltip-content">포스팅 및 커뮤니티 홍보 활동</span>
-    </td>
+    <td class="sticky-name" title="포스팅 및 커뮤니티 홍보 활동">바이럴</td>
     <td class="num-align">-</td><td class="num-align">4,724</td><td class="num-align">21</td><td class="num-align">289</td><td class="num-align">107,600,650</td><td class="num-align">6,456,039</td><td class="roas num-align">86%</td>
 </tr>
 <tr class="group-border">
     <td class="cat">SNS</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        SNS
-        <span class="tooltip-content">SNS 채널 활용 홍보</span>
-    </td>
+    <td class="sticky-name" title="SNS 채널 활용 홍보">SNS</td>
     <td class="num-align">-</td><td class="num-align">5,841</td><td class="num-align">29</td><td class="num-align">327</td><td class="num-align">32,837,060</td><td class="num-align">1,970,224</td><td class="roas num-align">-</td>
 </tr>
 <tr class="group-border">
     <td class="cat">유튜브</td>
-    <td class="sticky-name tooltip-cell" tabindex="0">
-        유튜브
-        <span class="tooltip-content">유튜브 유저 대상 광고</span>
-    </td>
+    <td class="sticky-name" title="유튜브 유저 대상 광고">유튜브</td>
     <td class="num-align">8,522,849</td><td class="num-align">135,135</td><td class="num-align">1</td><td class="num-align">96</td><td class="num-align">37,437,880</td><td class="num-align">2,246,273</td><td class="roas num-align">26%</td>
 </tr>
 
@@ -450,18 +272,6 @@ tr.total-row .sticky-name{background:#fff1f2}
 </table>
 </div>
 </div>
-
-<script>
-// 모바일에서 다른 곳을 터치하면 툴팁이 닫히도록 처리
-document.addEventListener('touchstart', function(e) {
-    if (!e.target.closest('.sticky-name')) {
-        const focused = document.activeElement;
-        if (focused && focused.classList.contains('sticky-name')) {
-            focused.blur();
-        }
-    }
-}, {passive: true});
-</script>
 
 </body>
 </html>
